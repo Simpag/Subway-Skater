@@ -7,6 +7,9 @@ public class PlayerMotor : MonoBehaviour {
     private const float LANE_DISTANCE = 3.0f;
     private const float TURN_SPEED = 0.05f;
 
+    //
+    private bool isRunning = false;
+
     //Animation
     private Animator anim;
 
@@ -26,13 +29,16 @@ public class PlayerMotor : MonoBehaviour {
 
     private void Update()
     {
+        if (!isRunning) //Don't run the update loop if the game isnt started
+            return;
+
         //Gather inputs on which lane we should be
         //Move Left
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (MobileInput.Instance.SwipeLeft)
             MoveLane(false);
 
         //Move Right
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (MobileInput.Instance.SwipeRight)
             MoveLane(true);
 
         //Calculate where we should be
@@ -55,7 +61,7 @@ public class PlayerMotor : MonoBehaviour {
         {
             verticalVelocity = -0.1f;
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (MobileInput.Instance.SwipeUp)
             {
                 //jump
                 anim.SetTrigger("Jump");
@@ -68,7 +74,7 @@ public class PlayerMotor : MonoBehaviour {
             verticalVelocity -= (gravity * Time.deltaTime);
 
             //Swipe down, fall faster
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (MobileInput.Instance.SwipeDown)
             {
                 verticalVelocity = -jumpForce;
             }
@@ -110,5 +116,10 @@ public class PlayerMotor : MonoBehaviour {
         Debug.DrawRay(groundRay.origin, groundRay.direction, Color.cyan, 1.0f);
 
         return Physics.Raycast(groundRay, 0.2f + 0.1f);
+    }
+
+    public void StartRunning()
+    {
+        isRunning = true;
     }
 }
