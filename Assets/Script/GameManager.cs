@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager Instance { set; get; }
 
+    public bool IsDead { set; get; }
+
     private bool isGameStarted = false;
     private PlayerMotor motor;
 
@@ -32,7 +34,7 @@ public class GameManager : MonoBehaviour {
             motor.StartRunning();
         }
 
-        if (isGameStarted)
+        if (isGameStarted && !IsDead)
         {
             //Increase score
             score += (Time.deltaTime * modifierScore);
