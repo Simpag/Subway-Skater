@@ -243,6 +243,7 @@
     <Compile Include="Assets\Script\CoinSpawner.cs" />
     <Compile Include="Assets\Script\FollowPlayer.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
+    <Compile Include="Assets\Script\GlacierSpawner.cs" />
     <Compile Include="Assets\Script\LevelManager.cs" />
     <Compile Include="Assets\Script\MobileInput.cs" />
     <Compile Include="Assets\Script\Piece.cs" />
