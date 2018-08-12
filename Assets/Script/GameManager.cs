@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
 
     //UI and UI fields
     public Animator gameCanvasAnim;
-    public Text scoreText, coinText, modifierText;
+    public Text scoreText, coinText, modifierText, highscoreText;
     private float score, coinScore, modifierScore;
     private int lastScore;
 
@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour {
         Instance = this;
         motor = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMotor>();
         modifierScore = 1;
+
+        highscoreText.text = PlayerPrefs.GetInt("Highscore").ToString();
     }
 
     private void Update()
@@ -85,6 +87,18 @@ public class GameManager : MonoBehaviour {
         deathMenuAnim.SetTrigger("Dead");
 
         FindObjectOfType<GlacierSpawner>().IsScrolling = false;
+
+        gameCanvasAnim.SetTrigger("Hide");
+
+        // Check if this is a highscore
+        if (score > PlayerPrefs.GetInt("Highscore"))
+        {
+            float s = score;
+            if (s % 1 == 0)
+                s++;
+
+            PlayerPrefs.SetInt("Highscore", (int)s);
+        }
     }
 
 }
