@@ -1,0 +1,9 @@
+{
+  "Modalname": "SubwaySkaterModal",
+  "ProjectName" : "Subway Skater",
+  "ProjectTopic" : "Unity Game",
+  "ProjectDescription" : "Spelet är gjort efter en tutorial från youtube. Detta var en av de första längre tutorialsen på unity som jag följde och slutförde.
+  Här är en del av tutorialen: https://www.youtube.com/watch?v=rhTPxrJICVg",
+  "Date" : "24/02-2018",
+  "Image" : "https://i.ytimg.com/vi/rhTPxrJICVg/maxresdefault.jpg"
+}
